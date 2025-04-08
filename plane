@@ -1,0 +1,23 @@
+import tkinter
+from tkinter import ttk, Tk
+from time import *
+from PIL import ImageTk, Image
+
+from consts import *
+
+
+
+
+class Plane:
+
+    def __init__(self, win, can):
+        self.win = win
+        self.can = can
+
+    def fly(self, t):
+        # for t in range(0, 10000):
+        #     tt = t / 10000
+        x = Vp * t
+        y = 1080 - h
+        pln = self.can.create_rectangle(x + 20, y + 20, x - 50, y - 50)
+        self.can.update()
