@@ -5,8 +5,9 @@ from PIL import ImageTk, Image
 
 from base_screen import BaseScreen
 
+
 class StartScreen(BaseScreen):
-    MENU_BUTTONS = {"anchor_": "center", "padx_": 10, "pady_": 30, "ipadx_": 50, "ipady_":40}
+    MENU_BUTTONS = {"anchor_": "center", "padx_": 10, "pady_": 30, "ipadx_": 50, "ipady_": 40}
 
     def __init__(self, win, main):
         super().__init__(win)
