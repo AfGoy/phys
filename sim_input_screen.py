@@ -1,5 +1,5 @@
 import tkinter
-from tkinter import ttk, Tk, Canvas
+from tkinter import ttk, Tk, Canvas, NW
 from time import *
 from PIL import ImageTk, Image
 
@@ -12,23 +12,29 @@ from tkinter import ttk, Tk, PhotoImage
 from PIL import Image, ImageTk
 
 from base_screen import BaseScreen
-from consts import H, FONT
+from consts import FONT
 
 
-class SimScreen(BaseScreen):
+class SimInputScreen(BaseScreen):
 
     def __init__(self, win, can):
         super().__init__(win)
         self.can = can
+        self.win = win
         self.pln = Plane(win, can)
         self.blt = Bullet(win, can)
-        self.trg = Trg(win, can, H)
+        self.trg = None
+        self.entry_ = None
 
     def init_sim(self):
-        self.can.pack()
+        # self.can.grid(column=2, row=0)
+        self.can.place(x=150, y=0)
+        self.entry_ = ttk.Entry()
+        self.entry_.pack(anchor=NW, padx=6, pady=6)
         self.win.bind("<Return>", self.start_sim)
 
     def start_sim(self, e):
+        self.trg = Trg(self.win, self.can, int(self.entry_.get()))
         self.clear_objects(self.pln.pln, self.blt.blt, self.trg.trg)
 
         objs = [self.pln, self.blt, self.trg]

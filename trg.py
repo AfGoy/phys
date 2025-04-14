@@ -7,10 +7,10 @@ from consts import *
 
 
 class Trg:
-    def __init__(self, win, can):
+    def __init__(self, win, can, H_):
         self.can = can
         self.win = win
-        self.y_start = SCR_HGHT - H
+        self.y_start = SCR_HGHT - H_
         self.x = L + x0
         self.y = self.y_start
         self.trg = self.can.create_rectangle(self.x + 10, self.y_start + 10, self.x, self.y_start,
