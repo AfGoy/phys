@@ -35,7 +35,7 @@ class SimInputScreen(BaseScreen):
 
     def start_sim(self, e):
         self.trg = Trg(self.win, self.can, int(self.entry_.get()))
-        self.clear_objects(self.pln.pln, self.blt.blt, self.trg.trg)
+        self.can.delete("all")
 
         objs = [self.pln, self.blt, self.trg]
         for t in range(0, 10000):
