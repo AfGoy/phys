@@ -1,20 +1,17 @@
-import tkinter
-from tkinter import ttk, Tk, PhotoImage
-from PIL import Image, ImageTk
+from tkinter import ttk
 
-from consts import TEXT1, HELPTEXT
+from consts import HELPTEXT
 from base_screen import BaseScreen
-from condition_screen import ConditionScreen
-from sim_screen import SimScreen
 
 
 class MainScreen(BaseScreen):
-    MENU_BUTTONS = {"anchor_": "center", "padx_": 10, "pady_": 30, "ipadx_": 50, "ipady_":40}
+    MENU_BUTTONS = {"anchor_": "center", "padx_": 10, "pady_": 30, "ipadx_": 50, "ipady_": 40}
 
     def __init__(self, win, cond, sim, sim_input):
         super().__init__(win)
         self.cond = cond
         self.sim = sim
+        self.sim.main = self
         self.sim_input = sim_input
         self.init_main()
 
@@ -27,14 +24,10 @@ class MainScreen(BaseScreen):
                                                     self.add_text(1000, "white", "black", "hlp", HELPTEXT),
                                                     self.render_text_by_name(10, 10, "hlp")])
 
-    def render_buttons(self, padx_, pady_, ipadx_, ipady_, anchor_=None):
-        for btn in self.buttons:
+    def render_buttons(self, padx_=10, pady_=30, ipadx_=50, ipady_=40, anchor_="center", buttons=None):
+        buttons_to_render = buttons if buttons else self.buttons
+        for btn in buttons_to_render:
             if anchor_:
                 btn.pack(anchor=anchor_, padx=padx_, pady=pady_, ipadx=ipadx_, ipady=ipady_)
             else:
                 btn.pack(padx=padx_, pady=pady_)
-
-    def esc_btn(self):
-        self.esc = ttk.Button(self.win, text="Выход", command=lambda:
-        [self.clear_screen(), self.render_buttons(**MainScreen.MENU_BUTTONS)])
-        self.esc.pack(padx=1, pady=1)

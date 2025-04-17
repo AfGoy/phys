@@ -1,13 +1,8 @@
-import tkinter
-from tkinter import ttk, Tk
-from time import *
-from PIL import ImageTk, Image
-
 from base_screen import BaseScreen
+from main_screen import MainScreen
 
 
 class StartScreen(BaseScreen):
-    MENU_BUTTONS = {"anchor_": "center", "padx_": 10, "pady_": 30, "ipadx_": 50, "ipady_": 40}
 
     def __init__(self, win, main):
         super().__init__(win)
@@ -16,5 +11,6 @@ class StartScreen(BaseScreen):
         self.render_image_by_name("startscr", 0, 0)
 
     def destroy_start_screen(self, e):
+        print(1)
         self.clear_screen()
-        self.main.render_buttons(**StartScreen.MENU_BUTTONS)
+        self.main.render_buttons(**MainScreen.MENU_BUTTONS)

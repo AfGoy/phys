@@ -15,8 +15,8 @@ class BaseScreen:
     def add_button(self, text_, command_=None):
         self.buttons.append(ttk.Button(self.win, text=text_, command=command_))
 
-    def render_buttons(self, padx_, pady_, anchor_=None):
-        pass
+    def get_buttons(self):
+        return self.buttons
 
     def add_text(self, w, bg_, fg_, title, text_, font_=("Arial", 15, "bold")):
         self.texts[title] = tkinter.Message(self.win, width=w, font=font_, bg=bg_, fg=fg_, text=text_)
@@ -40,5 +40,8 @@ class BaseScreen:
             el2.destroy()
         for el3 in self.labels:
             el3.destroy()
+        self.buttons.clear()
+        self.texts.clear()
+        self.labels.clear()
 
 

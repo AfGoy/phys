@@ -1,3 +1,5 @@
+from base_screen import BaseScreen
+
 KX = 2
 KY = 1
 L = 600 * KX

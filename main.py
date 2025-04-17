@@ -18,9 +18,8 @@ sim_inp = SimInputScreen(win, can)
 menu = MainScreen(win, cond, sim, sim_inp)
 start = StartScreen(win, menu)
 
+cond.add_main_screen(menu)
 
 win.bind("<space>", start.destroy_start_screen)
-
-# win.bind("<Escape>", escape_handler)
 
 win.mainloop()

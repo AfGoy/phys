@@ -1,18 +1,12 @@
-import tkinter
-from tkinter import ttk, Tk, Canvas
 from time import *
-from PIL import ImageTk, Image
 
 from plane import Plane
 from bullet import Bullet
 from trg import Trg
 
-import tkinter
-from tkinter import ttk, Tk, PhotoImage
-from PIL import Image, ImageTk
-
 from base_screen import BaseScreen
-from consts import H, FONT
+from main_screen import MainScreen
+from consts import H
 
 
 class SimScreen(BaseScreen):
@@ -29,7 +23,7 @@ class SimScreen(BaseScreen):
         self.win.bind("<Return>", self.start_sim)
 
     def start_sim(self, e):
-        self.clear_objects(self.pln.pln, self.blt.blt, self.trg.trg)
+        self.can.delete("all")
 
         objs = [self.pln, self.blt, self.trg]
         for t in range(0, 10000):
@@ -50,3 +44,4 @@ class SimScreen(BaseScreen):
     def clear_objects(self, *args):
         for obj_del in args:
             self.can.delete(obj_del)
+

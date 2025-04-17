@@ -31,7 +31,7 @@ class Bullet:
     def is_collide(self, trg):
         # TODO:
         # Добавить текст попал \ не попал
-        if trg.x - 10 <= self.x <= trg.x + 10 and trg.y - 10 <= self.y <= trg.y + 10:
+        if trg.x - 7 <= self.x <= trg.x + 7 and trg.y - 7 <= self.y <= trg.y + 7:
             return True
         return False
 

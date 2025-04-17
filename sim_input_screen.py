@@ -3,19 +3,17 @@ from tkinter import ttk, Tk, Canvas, NW
 from time import *
 from PIL import ImageTk, Image
 
+from main_screen import MainScreen
 from plane import Plane
 from bullet import Bullet
 from trg import Trg
 
-import tkinter
-from tkinter import ttk, Tk, PhotoImage
-from PIL import Image, ImageTk
-
 from base_screen import BaseScreen
-from consts import FONT
+from consts import FONT, HELPTEXT, KX, KY
 
 
 class SimInputScreen(BaseScreen):
+    MENU_BUTTONS = {"anchor_": "center", "padx_": 10, "pady_": 30, "ipadx_": 50, "ipady_": 40}
 
     def __init__(self, win, can):
         super().__init__(win)
@@ -27,13 +25,13 @@ class SimInputScreen(BaseScreen):
         self.entry_ = None
 
     def init_sim(self):
-        # self.can.grid(column=2, row=0)
         self.can.place(x=150, y=0)
         self.entry_ = ttk.Entry()
-        self.entry_.pack(anchor=NW, padx=6, pady=6)
+        self.entry_.place(x=5, y=300, anchor=NW)
         self.win.bind("<Return>", self.start_sim)
 
     def start_sim(self, e):
+        # h = int(round(float(self.entry_.get() * KY)))
         self.trg = Trg(self.win, self.can, int(self.entry_.get()))
         self.can.delete("all")
 
