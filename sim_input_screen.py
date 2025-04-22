@@ -29,6 +29,7 @@ class SimInputScreen(BaseScreen):
         self.entry_ = ttk.Entry()
         self.entry_.place(x=5, y=300, anchor=NW)
         self.win.bind("<Return>", self.start_sim)
+        # self.win.bind("<Escape>", self.can.destroy())
 
     def start_sim(self, e):
         # h = int(round(float(self.entry_.get() * KY)))
@@ -51,6 +52,24 @@ class SimInputScreen(BaseScreen):
 
         self.win.mainloop()
 
+    def add_main_to_sim_screen(self, main):
+        self.main = main
+        self.win.bind("<Escape>", self.escape_handler)
+
+
+    def escape_handler(self, e):
+        print(1)
+        self.clear_screen()
+        self.main.clear_screen()
+        self.can.destroy()
+        self.entry_.destroy()
+        self.main.init_main()
+        self.init_sim()
+        self.main.render_buttons(buttons=self.main.buttons)
+        print(2)
+
+
     def clear_objects(self, *args):
         for obj_del in args:
             self.can.delete(obj_del)
+

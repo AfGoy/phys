@@ -19,6 +19,7 @@ menu = MainScreen(win, cond, sim, sim_inp)
 start = StartScreen(win, menu)
 
 cond.add_main_screen(menu)
+sim_inp.add_main_to_sim_screen(menu)
 
 win.bind("<space>", start.destroy_start_screen)
 
