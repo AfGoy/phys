@@ -10,7 +10,6 @@ class StartScreen(BaseScreen):
         self.add_image("startscr", "startscr.png")
         self.render_image_by_name("startscr", 0, 0)
 
-    def destroy_start_screen(self, e):
-        # print(1)
+    def destroy_start_screen(self):
         self.clear_screen()
         self.main.render_buttons(**MainScreen.MENU_BUTTONS)

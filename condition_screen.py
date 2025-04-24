@@ -19,11 +19,3 @@ class ConditionScreen(BaseScreen):
 
     def add_main_screen(self, main):
         self.main = main
-        self.win.bind("<Escape>", self.escape_handler)
-
-    def escape_handler(self, e):
-        self.clear_screen()  # Очищаем экран
-        self.main.clear_screen()
-        self.main.init_main()
-        self.cond_init()
-        self.main.render_buttons(buttons=self.main.buttons)  # Упаковываем
