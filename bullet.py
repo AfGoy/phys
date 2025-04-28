@@ -35,3 +35,7 @@ class Bullet:
             return True
         return False
 
+    def init_cords(self):
+        self.x_start = 60 + x0
+        self.y_start = SCR_HGHT - h
+

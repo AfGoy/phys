@@ -8,9 +8,10 @@ from consts import *
 
 class Trg:
     def __init__(self, win, can, H_):
+        self.H = H_
         self.can = can
         self.win = win
-        self.y_start = SCR_HGHT - H_
+        self.y_start = SCR_HGHT - self.H
         self.x = L + x0
         self.y = self.y_start
         self.trg = self.can.create_rectangle(self.x + 10, self.y_start + 10, self.x, self.y_start,
@@ -24,3 +25,7 @@ class Trg:
                                              fill="black")
         self.can.update()
         return self.trg
+
+    def init_cords(self):
+        self.y_start = SCR_HGHT - self.H
+        self.x = L + x0

@@ -23,3 +23,8 @@ class Plane:
                                              fill="black")
         self.can.update()
         return self.pln
+
+    def init_cords(self):
+        self.x_start = 60 + x0
+        self.y_start = SCR_HGHT - 30 - h
+

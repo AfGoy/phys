@@ -23,12 +23,12 @@ def escape_handler(**kwargs):
         write_name_screen("MENU")
         kwargs["SIM"].clear_screen()
         kwargs["MAIN"].clear_screen()
-        kwargs["SIM"].can.destroy()
+        SimScreen.IS_SIM = False
+        kwargs["SIM"].can.pack_forget()
+        kwargs["SIM"].pln.init_cords()
+        kwargs["SIM"].blt.init_cords()
+        kwargs["SIM"].trg.init_cords()
         kwargs["MAIN"].init_main()
-        # TODO:
-        # Бой холсту!
-        #
-        # kwargs["SIM"].init_sim()
         kwargs["MAIN"].render_buttons(buttons=kwargs["MAIN"].buttons)
 
 

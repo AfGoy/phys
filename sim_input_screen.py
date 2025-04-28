@@ -30,7 +30,7 @@ class SimInputScreen(BaseScreen):
         self.entry_.place(x=5, y=300, anchor=NW)
         self.win.bind("<Return>", self.start_sim)
 
-    def start_sim(self):
+    def start_sim(self, e):
         self.trg = Trg(self.win, self.can, int(self.entry_.get()))
         self.can.delete("all")
 
