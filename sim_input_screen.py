@@ -14,34 +14,50 @@ from consts import FONT, HELPTEXT, KX, KY
 
 class SimInputScreen(BaseScreen):
     MENU_BUTTONS = {"anchor_": "center", "padx_": 10, "pady_": 30, "ipadx_": 50, "ipady_": 40}
+    IS_SIM = False
 
     def __init__(self, win, can):
         super().__init__(win)
         self.can = can
         self.win = win
+        self.objs_del = []
         self.pln = Plane(win, can)
         self.blt = Bullet(win, can)
         self.trg = None
         self.entry_ = None
 
+    @staticmethod
+    def validate_number(input_):
+        return input_.isdigit() or input_ == ""
+
     def init_sim(self):
-        self.can.place(x=150, y=0)
-        self.entry_ = ttk.Entry()
+        self.trg = None
+        self.clear_objects(*self.objs_del)
+        self.can.pack()
+        self.entry_ = ttk.Entry(validate="key", validatecommand=(self.win.register(SimInputScreen.validate_number), '%P'))
         self.entry_.place(x=5, y=300, anchor=NW)
+        self.entry_.focus_set()
+        for obj in [self.pln, self.pln, self.trg]:
+            if obj is not None:
+                self.objs_del.append(obj.fly(0))
         self.win.bind("<Return>", self.start_sim)
 
     def start_sim(self, e):
+        self.can.delete("all")
+        SimInputScreen.IS_SIM = True
         self.trg = Trg(self.win, self.can, int(self.entry_.get()))
         self.can.delete("all")
 
         objs = [self.pln, self.blt, self.trg]
         for t in range(0, 10000):
+            if not SimInputScreen.IS_SIM:
+                break
 
             objs_del = []
             for obj in objs:
                 objs_del.append(obj.fly(t / 1000))
 
-            if self.blt.is_collide(self.trg):
+            if "trg" in self.__dict__ and self.blt.is_collide(self.trg):
                 break
 
             self.clear_objects(*objs_del)

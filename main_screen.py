@@ -8,9 +8,10 @@ from funcs import *
 class MainScreen(BaseScreen):
     MENU_BUTTONS = {"anchor_": "center", "padx_": 10, "pady_": 30, "ipadx_": 50, "ipady_": 40}
 
-    def __init__(self, win, cond, sim, sim_input):
+    def __init__(self, win, cond, math, sim, sim_input):
         super().__init__(win)
         self.cond = cond
+        self.math = math
         self.sim = sim
         self.sim.main = self
         self.sim_input = sim_input
@@ -18,7 +19,7 @@ class MainScreen(BaseScreen):
 
     def init_main(self):
         self.add_button("Условие", command_=lambda: [self.clear_screen(), self.cond.render_screen(), write_name_screen("COND")])
-        self.add_button("Мат. решение", command_=lambda: [write_name_screen("MATH")])
+        self.add_button("Мат. решение", command_=lambda: [self.clear_screen(), self.math.render_screen(), write_name_screen("MATH")])
         self.add_button("Демонстрация", command_=lambda: [self.clear_screen(), self.sim.init_sim(), write_name_screen("SIM")])
         self.add_button("Краткое условие", command_=lambda: [self.clear_screen(), self.sim_input.init_sim(), write_name_screen("SIM_INPUT")])
         self.add_button("Помощь", command_=lambda: [self.clear_screen(),

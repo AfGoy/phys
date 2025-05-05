@@ -1,5 +1,3 @@
-from tkinter import ttk, Tk
-
 from base_screen import BaseScreen
 from consts import TEXT1
 
