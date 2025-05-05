@@ -26,9 +26,8 @@ class SimScreen(BaseScreen):
         self.can.pack()
         for obj in [self.pln, self.pln, self.trg]:
             self.objs_del.append(obj.fly(0))
-        self.win.bind("<Return>", self.start_sim)
 
-    def start_sim(self, e):
+    def start_sim(self):
         self.can.delete("all")
         SimScreen.IS_SIM = True
 

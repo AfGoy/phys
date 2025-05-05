@@ -40,9 +40,8 @@ class SimInputScreen(BaseScreen):
         for obj in [self.pln, self.pln, self.trg]:
             if obj is not None:
                 self.objs_del.append(obj.fly(0))
-        self.win.bind("<Return>", self.start_sim)
 
-    def start_sim(self, e):
+    def start_sim(self):
         self.can.delete("all")
         SimInputScreen.IS_SIM = True
         self.trg = Trg(self.win, self.can, int(self.entry_.get()))
