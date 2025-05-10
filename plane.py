@@ -12,7 +12,7 @@ class Plane:
         self.win = win
         self.can = can
         self.x_start = 60 + x0
-        self.y_start = SCR_HGHT - 30 - h
+        self.y_start = (SCR_HGHT - h) * KY
         self.pln = self.can.create_rectangle(self.x_start + 60, self.y_start + 40, self.x_start, self.y_start,
                                              fill="black")
 
@@ -26,5 +26,5 @@ class Plane:
 
     def init_cords(self):
         self.x_start = 60 + x0
-        self.y_start = SCR_HGHT - 30 - h
+        self.y_start = (SCR_HGHT - 30 - h) * KY
 

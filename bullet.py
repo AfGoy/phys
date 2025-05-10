@@ -11,14 +11,14 @@ class Bullet:
         self.win = win
         self.can = can
         self.x_start = 60 + x0
-        self.y_start = SCR_HGHT - h
+        self.y_start = (SCR_HGHT - h) * KY
         self.x = self.x_start
         self.y = self.y_start
         self.blt = self.can.create_oval(self.x_start + 5, self.y_start + 5, self.x_start, self.y_start, fill="black")
 
     def fly(self, t):
         delta_x = (Vb + Vp) * t
-        delta_y = (g * t ** 2) * 0.5
+        delta_y = (g * t ** 2) * 0.5 * KY
 
         self.x = self.x_start + delta_x
         self.y = self.y_start + delta_y
@@ -37,5 +37,5 @@ class Bullet:
 
     def init_cords(self):
         self.x_start = 60 + x0
-        self.y_start = SCR_HGHT - h
+        self.y_start = (SCR_HGHT - h) * KY
 

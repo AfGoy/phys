@@ -1,14 +1,14 @@
 from base_screen import BaseScreen
 
 KX = 2
-KY = 1
+KY = 5
 L = 600 * KX
 Vp = 150 * KX
 Vb = 450 * KX
-Vt = 20 * KY
-g = 9.81 * KY
-h = 1000 * KY
-H = 1015 * KY
+Vt = 20
+g = 9.81
+h = 1000
+H = 1015
 SCR_HGHT = 1080
 x0 = 500
 

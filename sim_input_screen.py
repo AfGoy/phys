@@ -9,7 +9,6 @@ from bullet import Bullet
 from trg import Trg
 
 from base_screen import BaseScreen
-from consts import FONT, HELPTEXT, KX, KY
 
 
 class SimInputScreen(BaseScreen):
