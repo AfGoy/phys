@@ -31,24 +31,26 @@ def escape_handler(**kwargs):
     elif name_screen == "SIM":
         write_name_screen("MENU")
         kwargs["SIM"].clear_screen()
-        kwargs["MAIN"].clear_screen()
         SimScreen.IS_SIM = False
+        kwargs["SIM"].clear_objects(*kwargs["SIM"].objs_del)
         kwargs["SIM"].can.pack_forget()
-        kwargs["SIM"].pln.init_cords()
-        kwargs["SIM"].blt.init_cords()
-        kwargs["SIM"].trg.init_cords()
+        del kwargs["SIM"].pln
+        del kwargs["SIM"].blt
+        del kwargs["SIM"].trg
+        del kwargs["SIM"].result_text_id
         kwargs["MAIN"].init_main()
         kwargs["MAIN"].render_buttons(buttons=kwargs["MAIN"].buttons)
     elif name_screen == "SIM_INPUT":
         write_name_screen("MENU")
         kwargs["SIM_INPUT"].clear_screen()
-        kwargs["MAIN"].clear_screen()
         SimInputScreen.IS_SIM = False
+        kwargs["SIM_INPUT"].clear_objects(*kwargs["SIM_INPUT"].objs_del)
         kwargs["SIM_INPUT"].can.pack_forget()
-        kwargs["SIM_INPUT"].pln.init_cords()
-        kwargs["SIM_INPUT"].blt.init_cords()
         kwargs["SIM_INPUT"].entry_.destroy()
+        del kwargs["SIM_INPUT"].pln
+        del kwargs["SIM_INPUT"].blt
         del kwargs["SIM_INPUT"].trg
+        del kwargs["SIM_INPUT"].result_text_id
         kwargs["MAIN"].init_main()
         kwargs["MAIN"].render_buttons(buttons=kwargs["MAIN"].buttons)
     elif name_screen == "HLP":
