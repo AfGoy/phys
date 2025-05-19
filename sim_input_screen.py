@@ -29,13 +29,13 @@ class SimInputScreen(BaseScreen):
         return input_.isdigit() or input_ == ""
 
     def init_sim(self):
-        self.can.delete(self.result_text_id)
+        # self.can.delete(self.result_text_id)
         self.pln = Plane(self.win, self.can)
         self.blt = Bullet(self.win, self.can)
         self.add_text(1000, "white", "black", "cond_sim_", CONDITION)
         self.render_text_by_name(10, 10, "cond_sim_")
         # TODO
-        self.add_text(1000, "white", "black", "h_", "H = ")
+        self.add_text(1000, "white", "black", "h_", "H (В метрах) = ")
         self.render_text_by_name(10, 120, "h_")
 
         self.trg = None
@@ -44,7 +44,7 @@ class SimInputScreen(BaseScreen):
         self.clear_objects(*self.objs_del)
         self.can.pack()
         self.entry_ = ttk.Entry(validate="key", validatecommand=(self.win.register(SimInputScreen.validate_number), '%P'))
-        self.entry_.place(x=1000, y=180)
+        self.entry_.place(x=1050, y=325)
         self.entry_.focus_set()
         for obj in [self.pln, self.pln, self.trg]:
             if obj is not None:

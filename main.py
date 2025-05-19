@@ -37,7 +37,7 @@ def escape_handler(**kwargs):
         del kwargs["SIM"].pln
         del kwargs["SIM"].blt
         del kwargs["SIM"].trg
-        del kwargs["SIM"].result_text_id
+        # del kwargs["SIM"].result_text_id
         kwargs["MAIN"].init_main()
         kwargs["MAIN"].render_buttons(buttons=kwargs["MAIN"].buttons)
     elif name_screen == "SIM_INPUT":
@@ -50,7 +50,7 @@ def escape_handler(**kwargs):
         del kwargs["SIM_INPUT"].pln
         del kwargs["SIM_INPUT"].blt
         del kwargs["SIM_INPUT"].trg
-        del kwargs["SIM_INPUT"].result_text_id
+        # del kwargs["SIM_INPUT"].result_text_id
         kwargs["MAIN"].init_main()
         kwargs["MAIN"].render_buttons(buttons=kwargs["MAIN"].buttons)
     elif name_screen == "HLP":
