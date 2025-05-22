@@ -23,24 +23,28 @@ class SimInputScreen(BaseScreen):
         self.trg = None
         self.entry_ = None
         self.result_text_id = None
+        self.can.create_rectangle(0, 500, 10000, 501, fill="black")
 
     @staticmethod
     def validate_number(input_):
         return input_.isdigit() or input_ == ""
 
     def init_sim(self):
-        # self.can.delete(self.result_text_id)
+        self.can.create_rectangle(0, 500, 10000, 501, fill="black")
+        if hasattr(self, 'result_text_id'):
+            self.can.delete(self.result_text_id)
         self.pln = Plane(self.win, self.can)
         self.blt = Bullet(self.win, self.can)
         self.add_text(1000, "white", "black", "cond_sim_", CONDITION)
         self.render_text_by_name(10, 10, "cond_sim_")
-        # TODO
         self.add_text(1000, "white", "black", "h_", "H (В метрах) = ")
         self.render_text_by_name(10, 120, "h_")
 
         self.trg = None
         if hasattr(self, 'result_text_id'):
             self.can.itemconfig(self.result_text_id, state='hidden')
+        else:
+            self.result_text_id = None
         self.clear_objects(*self.objs_del)
         self.can.pack()
         self.entry_ = ttk.Entry(validate="key", validatecommand=(self.win.register(SimInputScreen.validate_number), '%P'))
@@ -55,6 +59,7 @@ class SimInputScreen(BaseScreen):
         SimInputScreen.IS_SIM = True
         self.trg = Trg(self.win, self.can, int(self.entry_.get()))
         self.can.delete("all")
+        self.can.create_rectangle(0, 500, 10000, 501, fill="black")
 
         objs = [self.pln, self.blt, self.trg]
         hit_target = False
@@ -104,7 +109,8 @@ class SimInputScreen(BaseScreen):
             font=('Helvetica', 16, 'bold'),
             anchor="center"
         )
-        self.can.itemconfig(self.result_text_id, state='normal')
+        if hasattr(self, 'result_text_id'):
+            self.can.itemconfig(self.result_text_id, state='normal')
 
     def clear_objects(self, *args):
         for obj_del in args:

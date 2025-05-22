@@ -25,8 +25,11 @@ class SimScreen(BaseScreen):
         self.trg = Trg(self.win, self.can, H)
 
     def init_sim(self):
+        self.can.create_rectangle(0, 500, 10000, 501, fill="black")
         if hasattr(self, 'result_text_id'):
             self.can.itemconfig(self.result_text_id, state='hidden')
+        else:
+            self.result_text_id = None
         self.clear_objects(*self.objs_del)
         self.add_text(1000, "white", "black", "cond_sim", CONDITION)
         self.render_text_by_name(10, 10, "cond_sim")
@@ -37,6 +40,7 @@ class SimScreen(BaseScreen):
 
     def start_sim(self):
         self.can.delete("all")
+        self.can.create_rectangle(0, 500, 10000, 501, fill="black")
         SimScreen.IS_SIM = True
 
         objs = [self.pln, self.blt, self.trg]
@@ -78,7 +82,8 @@ class SimScreen(BaseScreen):
             font=('Helvetica', 16, 'bold'),
             anchor="center"
         )
-        self.can.itemconfig(self.result_text_id, state='normal')
+        if hasattr(self, 'result_text_id'):
+            self.can.itemconfig(self.result_text_id, state='normal')
 
 
     def render_screen(self, text):

@@ -2,6 +2,8 @@ import tkinter
 from tkinter import ttk
 from PIL import Image, ImageTk
 
+from consts import FONT
+
 
 class BaseScreen:
 
@@ -11,9 +13,11 @@ class BaseScreen:
         self.texts = {}
         self.photos = {}
         self.labels = []
+        self.style = ttk.Style()
+        self.style.configure('MyButton.TButton', font=FONT)
 
     def add_button(self, text_, command_=None):
-        self.buttons.append(ttk.Button(self.win, text=text_, command=command_))
+        self.buttons.append(ttk.Button(self.win, text=text_, command=command_, style='MyButton.TButton', width=15, cursor="hand2"))
 
     def get_buttons(self):
         return self.buttons
