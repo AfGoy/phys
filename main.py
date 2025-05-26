@@ -20,6 +20,7 @@ def escape_handler(**kwargs):
         kwargs["MAIN"].clear_screen()
         kwargs["MAIN"].init_main()
         kwargs["COND"].cond_init()
+        kwargs["MAIN"].render_texts()
         kwargs["MAIN"].render_buttons(buttons=kwargs["MAIN"].buttons)
     elif name_screen == "MATH":
         write_name_screen("MENU")
@@ -27,6 +28,7 @@ def escape_handler(**kwargs):
         kwargs["MAIN"].clear_screen()
         kwargs["MAIN"].init_main()
         kwargs["MATH"].math_init()
+        kwargs["MAIN"].render_texts()
         kwargs["MAIN"].render_buttons(buttons=kwargs["MAIN"].buttons)
     elif name_screen == "SIM":
         write_name_screen("MENU")
@@ -40,6 +42,7 @@ def escape_handler(**kwargs):
         can.itemconfig(kwargs["SIM"].result_text_id, state='hidden')
         del kwargs["SIM"].result_text_id
         kwargs["MAIN"].init_main()
+        kwargs["MAIN"].render_texts()
         kwargs["MAIN"].render_buttons(buttons=kwargs["MAIN"].buttons)
     elif name_screen == "SIM_INPUT":
         write_name_screen("MENU")
@@ -48,12 +51,14 @@ def escape_handler(**kwargs):
         kwargs["SIM_INPUT"].clear_objects(*kwargs["SIM_INPUT"].objs_del)
         kwargs["SIM_INPUT"].can.pack_forget()
         kwargs["SIM_INPUT"].entry_.destroy()
+        kwargs["SIM_INPUT"].can.delete(kwargs["SIM_INPUT"].line)
         del kwargs["SIM_INPUT"].pln
         del kwargs["SIM_INPUT"].blt
         del kwargs["SIM_INPUT"].trg
         can.itemconfig(kwargs["SIM_INPUT"].result_text_id, state='hidden')
         del kwargs["SIM_INPUT"].result_text_id
         kwargs["MAIN"].init_main()
+        kwargs["MAIN"].render_texts()
         kwargs["MAIN"].render_buttons(buttons=kwargs["MAIN"].buttons)
     elif name_screen == "HLP":
         write_name_screen("MENU")
@@ -61,6 +66,7 @@ def escape_handler(**kwargs):
         kwargs["MAIN"].clear_screen()
         kwargs["MAIN"].init_main()
         kwargs["HELP"].help_init()
+        kwargs["MAIN"].render_texts()
         kwargs["MAIN"].render_buttons(buttons=kwargs["MAIN"].buttons)
 
 

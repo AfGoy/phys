@@ -6,7 +6,7 @@ from bullet import Bullet
 from trg import Trg
 
 from base_screen import BaseScreen
-from consts import H, IS_COLLISION, IS_NOT_COLLISION, CONDITION, TIME_STEP
+from consts import *
 
 
 class SimScreen(BaseScreen):
@@ -25,12 +25,14 @@ class SimScreen(BaseScreen):
         self.trg = Trg(self.win, self.can, H)
 
     def init_sim(self):
-        self.can.create_rectangle(0, 500, 10000, 501, fill="black")
+        self.can.create_rectangle(0, 400, 10000, 401, fill="black")
         if hasattr(self, 'result_text_id'):
             self.can.itemconfig(self.result_text_id, state='hidden')
         else:
             self.result_text_id = None
         self.clear_objects(*self.objs_del)
+        self.add_text(title="title", w=300, font_=FONT_TITLE, bg_="white", fg_="black", text_=SIM_TITLE)
+        self.render_text_by_name(pady_=(15, 15), title="title")
         self.add_text(1000, "white", "black", "cond_sim", CONDITION)
         self.render_text_by_name(10, 10, "cond_sim")
         self.create_obj()
@@ -40,7 +42,7 @@ class SimScreen(BaseScreen):
 
     def start_sim(self):
         self.can.delete("all")
-        self.can.create_rectangle(0, 500, 10000, 501, fill="black")
+        self.can.create_rectangle(0, 400, 10000, 401, fill="black")
         SimScreen.IS_SIM = True
 
         objs = [self.pln, self.blt, self.trg]
@@ -63,6 +65,7 @@ class SimScreen(BaseScreen):
                     if self.blt.x > self.trg.x + 15 or self.blt.x > self.can.winfo_width() or \
                             self.blt.y < 0 or self.blt.y > self.can.winfo_height():
                         SimScreen.IS_SIM = False
+                        hit_target = True
                         break
 
             self.clear_objects(*self.objs_del)
@@ -75,13 +78,15 @@ class SimScreen(BaseScreen):
         if hasattr(self, 'result_text_id'):
             self.can.itemconfig(self.result_text_id, state='hidden')
 
-        self.result_text_id = self.can.create_text(
-            self.can.winfo_width() // 2, 100,
-            text=IS_COLLISION,
-            fill="green",
-            font=('Helvetica', 16, 'bold'),
-            anchor="center"
-        )
+        if hit:
+            print(1)
+            self.result_text_id = self.can.create_text(
+                self.can.winfo_width() // 2, 100,
+                text=IS_COLLISION,
+                fill="green",
+                font=('Helvetica', 16, 'bold'),
+                anchor="center"
+            )
         if hasattr(self, 'result_text_id'):
             self.can.itemconfig(self.result_text_id, state='normal')
 

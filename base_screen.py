@@ -2,7 +2,7 @@ import tkinter
 from tkinter import ttk
 from PIL import Image, ImageTk
 
-from consts import FONT
+from consts import FONT, FONT_TITLE
 
 
 class BaseScreen:
@@ -25,8 +25,12 @@ class BaseScreen:
     def add_text(self, w, bg_, fg_, title, text_, font_=("Arial", 15, "bold")):
         self.texts[title] = tkinter.Message(self.win, width=w, font=font_, bg=bg_, fg=fg_, text=text_)
 
-    def render_text_by_name(self, padx_, pady_, title):
-        self.texts[title].pack(padx=padx_, pady=pady_)
+    def render_text_by_name(self, padx_=None, pady_=None, title=None):
+        if padx_:
+            self.texts[title].pack(padx=padx_, pady=pady_)
+        else:
+            self.texts[title].pack(pady=pady_)
+
 
     def add_image(self, name, path):
         pil_image = Image.open(path)

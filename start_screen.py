@@ -1,6 +1,8 @@
 from base_screen import BaseScreen
 from main_screen import MainScreen
 
+from consts import MENU_TITLE
+
 
 class StartScreen(BaseScreen):
 
@@ -12,4 +14,5 @@ class StartScreen(BaseScreen):
 
     def destroy_start_screen(self):
         self.clear_screen()
+        self.main.render_text_by_name(pady_=(15, 15), title="title")
         self.main.render_buttons(**MainScreen.MENU_BUTTONS)
