@@ -23,14 +23,14 @@ class SimInputScreen(BaseScreen):
         self.trg = None
         self.entry_ = None
         self.result_text_id = None
-        self.line = self.can.create_rectangle(0, 400, 10000, 401, fill="black")
+        self.line = self.can.create_rectangle(*COORDS_GROUND, fill="black")
 
     @staticmethod
     def validate_number(input_):
         return input_.isdigit() or input_ == ""
 
     def init_sim(self):
-        self.line = self.can.create_rectangle(0, 400, 10000, 401, fill="black")
+        self.line = self.can.create_rectangle(*COORDS_GROUND, fill="black")
         if hasattr(self, 'result_text_id'):
             self.can.delete(self.result_text_id)
         self.pln = Plane(self.win, self.can)
@@ -61,7 +61,7 @@ class SimInputScreen(BaseScreen):
         SimInputScreen.IS_SIM = True
         self.trg = Trg(self.win, self.can, int(self.entry_.get()))
         self.can.delete("all")
-        rct = self.can.create_rectangle(0, 400, 10000, 401, fill="black")
+        rct = self.can.create_rectangle(*COORDS_GROUND, fill="black")
 
         objs = [self.pln, self.blt, self.trg]
         hit_target = False
@@ -72,7 +72,13 @@ class SimInputScreen(BaseScreen):
                 break
             else:
                 for obj in objs:
-                    self.objs_del.append(obj.fly(t / 1000))
+                    if isinstance(obj, Trg):
+                        if not obj.is_collide_ground():
+                            self.objs_del.append(obj.fly(t / 1000))
+                        else:
+                            self.trg = Trg(self.win, self.can, self.trg.y)
+                    else:
+                        self.objs_del.append(obj.fly(t / 1000))
 
                 if "trg" in self.__dict__ and "blt" in self.__dict__:
                     if self.blt.is_collide(self.trg):

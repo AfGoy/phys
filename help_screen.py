@@ -1,6 +1,7 @@
 from base_screen import BaseScreen
 from consts import *
 
+
 class HelpScreen(BaseScreen):
     def __init__(self, win):
         super().__init__(win)

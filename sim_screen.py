@@ -25,7 +25,7 @@ class SimScreen(BaseScreen):
         self.trg = Trg(self.win, self.can, H)
 
     def init_sim(self):
-        self.can.create_rectangle(0, 400, 10000, 401, fill="black")
+        self.can.create_rectangle(*COORDS_GROUND, fill="black")
         if hasattr(self, 'result_text_id'):
             self.can.itemconfig(self.result_text_id, state='hidden')
         else:
@@ -42,7 +42,7 @@ class SimScreen(BaseScreen):
 
     def start_sim(self):
         self.can.delete("all")
-        self.can.create_rectangle(0, 400, 10000, 401, fill="black")
+        self.can.create_rectangle(*COORDS_GROUND, fill="black")
         SimScreen.IS_SIM = True
 
         objs = [self.pln, self.blt, self.trg]

@@ -15,9 +15,14 @@ class Trg:
     def fly(self, t):
         delta_y = Vt * t * KY**0.5
         self.y = self.y_start + delta_y
-        self.trg = self.can.create_rectangle(self.x + 10, self.y + 10, self.x,
+        self.trg = self.can.create_rectangle(self.x + SIZE_TRG, self.y + SIZE_TRG, self.x,
                                              self.y,
                                              fill="black")
+
         self.can.update()
         return self.trg
 
+    def is_collide_ground(self):
+        if COORDS_GROUND[1] - 1 < self.y + SIZE_TRG < COORDS_GROUND[1] + 1:
+            return True
+        return False
